@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<title>Number System-Binary,Decimal,Hexadecimal</title>
+	
+		<script language="JavaScript">
+		(function(){
+
+		var ConvertBase = function (num) {
+			return {
+            from : function (baseFrom) {
+                return {
+                    to : function (baseTo) {
+                        return parseInt(num, baseFrom).toString(baseTo);
+                    }
+                };
+            }
+        };
+    };
+        
+    // binary to decimal
+    ConvertBase.bin2dec = function (num) {
+        return ConvertBase(num).from(2).to(10);
+    };
+    
+    // binary to hexadecimal
+    ConvertBase.bin2hex = function (num) {
+        return ConvertBase(num).from(2).to(16);
+    };
+    
+    // decimal to binary
+    ConvertBase.dec2bin = function (num) {
+        return ConvertBase(num).from(10).to(2);
+    };
+    
+    // decimal to hexadecimal
+    ConvertBase.dec2hex = function (num) {
+        return ConvertBase(num).from(10).to(16);
+    };
+    
+    // hexadecimal to binary
+    ConvertBase.hex2bin = function (num) {
+        return ConvertBase(num).from(16).to(2);
+    };
+    
+    // hexadecimal to decimal
+    ConvertBase.hex2dec = function (num) {
+        return ConvertBase(num).from(16).to(10);
+    };
+    
+    this.ConvertBase = ConvertBase;
+    
+	})(this);
+	
+	function calculate()
+	{
+	binaryval = document.f1.t1.value
+	decimalval = document.f1.t2.value
+	hexadecimalval = document.f1.t3.value
+		if (binaryval != 0 && decimalval == 0 && hexadecimalval == 0)
+		{
+			document.f1.t1.value = binaryval
+			document.f1.t2.value = ConvertBase.bin2dec(binaryval)
+			document.f1.t3.value = ConvertBase.bin2hex(binaryval)
+		}
+		else if(binaryval == 0 && decimalval != 0 && hexadecimalval == 0)
+		{
+			document.f1.t1.value = ConvertBase.dec2bin(decimalval)
+			document.f1.t2.value = decimalval
+			document.f1.t3.value = ConvertBase.dec2hex(decimalval)
+		}
+		else if(binaryval == 0 && decimalval == 0 && hexadecimalval != 0)
+		{
+			document.f1.t1.value = ConvertBase.hex2bin(hexadecimalval)
+			document.f1.t2.value = ConvertBase.hex2dec(hexadecimalval)
+			document.f1.t3.value = hexadecimalval
+		}
+		else
+		{
+			document.f1.t1.value = "enter 1 value only!"
+			document.f1.t2.value = "enter 1 value only!"
+			document.f1.t3.value = "enter 1 value only!"
+		}
+	}
+	function reset()
+	{
+		document.f1.t1.value = 0
+		document.f1.t2.value = 0
+		document.f1.t3.value = 0
+	}
+	</script>
+	</head>
+	<body background="bg.jpg">		
+		<form name=f1>
+			<h1 align=center>Number System-Binary,Decimal,Hexadecimal</h1>
+			<h6 align=center>&copy;VSL Creations</h6><hr><br>
+			*Please enter one value at one time to calculate equivalent value of numbers.<br><br>
+			<p align=center>
+			<pre>
+			BINARY      <input type=text name=t1 value=0><br><br>
+			DECIMAL     <input type=text name=t2 value=0><br><br>
+			HEXADECIMAL <input type=text name=t3 value=0><br><br>
+			<input type=button name="b1" value="CALCULATE" onClick=calculate()> <input type=button name="b2" value="RESET" onClick=reset()>
+			</pre>
+		</form>
+		
+	</body>
+</html>
